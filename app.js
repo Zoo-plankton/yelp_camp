@@ -15,10 +15,10 @@ var campgroundsRoute = require("./routes/campgrounds.js"),
     commentsRoute    = require("./routes/comments.js"),
     indexRoute       = require("./routes/index.js");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v8");
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(require("express-session")({
-  secret: "i have no idea what im doing",
+  secret: "now i know what im doing",
   resave: false,
   saveUninitialized: false
 }));

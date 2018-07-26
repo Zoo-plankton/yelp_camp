@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <h1 class="text-center">Edit <%= campground.name %></h1>
+    <div class="row center-items">
+        <div class="col-md-9 mt-3 mx-auto">
+        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+              <input class="form-control" type="text" name="name" value="<%= campground.name %>" required>
+            </div>
+            <div class="form-group">
+               <input class="form-control" type="text" name="image" value="<%= campground.image %>">
+            </div>
+            <div class="form-group">
+               <textarea rows="8" class="form-control" type="text" name="description" required><%= campground.description %></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-large btn-primary">Submit</button>
+                <a class="btn btn-large btn-secondary" href="/campgrounds/<%= campground._id %>">Back</a>
+        </form>
+        <form class="d-inline" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+            <button class="btn float-sm-right btn-large btn-danger">Delete</button>
+        </form>
+        </div>
+    </div>    
+</div>
+<% include ../partials/footer %>

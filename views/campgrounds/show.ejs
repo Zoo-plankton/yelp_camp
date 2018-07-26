@@ -1,0 +1,68 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">YelpCamp</p>
+            <div class="list-group">
+                <li class="list-group-item active" >One</li>
+                <li class="list-group-item">Two</li>
+                <li class="list-group-item">Three</li>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <img class="card-img" src="<%= campground.image %>">
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="float-right">$9.00/night</h5>
+                        <h3><a><%= campground.name %></a></h3>
+                        <h6 class="card-subtitle mb-3 mt-2 text-black-50">Posted by <%= campground.author.username %></h6>
+                        <p><%= campground.description %></p>
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <% if (currentUser && campground.author.id.equals(currentUser._id)){ %>
+                                <a class="btn btn-outline-warning btn-block" href="/campgrounds/<%= campground._id %>/edit">Edit This Campground</a>
+                                <% }; %>
+                                <a class="btn btn-outline-secondary btn-block" href="/campgrounds">Back to Campgrounds</a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-light my-3">
+                <div class="card-header">
+                    <div class="card-title text-center">
+                        <h5>What people have to say about <%=campground.name%>:</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                               <a class="btn btn-block btn-outline-secondary" href="/campgrounds/<%= campground._id %>/comments/new">Leave a review</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% campground.comments.forEach(function(comment){ %>
+                        <hr>
+                        <div class="card-subtitle">
+                            <strong><%= comment.author.username %></strong>
+                            <p class="float-right mb-0">10 days ago</p>
+                        </div>
+                        <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <a class="card-link float-right" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                        <% } %>
+                        <p class="card-text">"<%= comment.text %>"</p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% include ../partials/footer %>

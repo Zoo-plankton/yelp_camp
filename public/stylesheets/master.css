@@ -5,3 +5,10 @@
 .index-img {
     height: 170px;
 }
+
+@media screen and (max-width: 812px) {
+    
+    .index-img {
+        height: auto;
+    }
+}
